@@ -24,7 +24,7 @@ class Hundstall404{
 	}
 
 	private function get_dogs(){
-		$html_chunk = $this->_curl($this->base_url.$this->data_url);
+		$html_chunk = $this->_curl($this->base_url.$this->data_url, 86400);
 		if($rows = explode("\n", $html_chunk)){
 			foreach($rows as $row){
 				preg_match_all('|<h3><img src="(.*?)" border="0" />(.*?)</h3>(.*?)|', $row, $matches);
@@ -40,20 +40,32 @@ class Hundstall404{
 		$this->dogs = array_slice($this->dogs, 0, $this->limit);
 	}
 	
-	private function _curl($url = null){ # TODO: make it cache!
+	private function _curl($url = null, $ttl = 600){
 		if($url){
-			$ch = curl_init();
-			$options = array(
-				CURLOPT_URL => $url,
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_CONNECTTIMEOUT => 10,
-				CURLOPT_TIMEOUT => 10
-			);
-			curl_setopt_array($ch, $options);
-			$data = curl_exec($ch);
-			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			curl_close($ch);
-			return $data;
+			$option_name = 'hundstall_cache_'.md5($url);
+			$data = get_option($option_name);
+			if(isset($data['cached_at']) && (time() - $data['cached_at'] <= $ttl)){
+				#echo "serve cache";
+			}else{
+				#echo "get new";
+				$ch = curl_init();
+				$options = array(
+					CURLOPT_URL => $url,
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_CONNECTTIMEOUT => 10,
+					CURLOPT_TIMEOUT => 10
+				);
+				curl_setopt_array($ch, $options);
+				$data['chunk'] = curl_exec($ch);
+				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				curl_close($ch);
+				if($http_code === 200){
+					$data['cached_at'] = time();
+					update_option($option_name, $data);
+				}
+			}
+			return $data['chunk'];
+
 		}
 	}
 	
