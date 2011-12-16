@@ -1,0 +1,58 @@
+body.fourofour {
+    background: url(bg.jpg)repeat #8a4120;
+}
+#fourofour_wrapper {
+    margin: 30px auto;
+    width: 500px;
+    padding: 20px;
+    font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    overflow: auto;
+    /* Fallback for web browsers that doesn't support RGBa */
+    background: rgb(255, 255, 255);
+    /* RGBa with 0.6 opacity */
+    background: rgba(255, 255, 255, 0.8);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ccffffff, endColorstr=#ccffffff);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ccffffff, endColorstr=#ccffffff)";
+    
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    
+    box-shadow: 0 0 12px #452110;
+    -moz-box-shadow: 0 0 12px #452110;
+    -webkit-box-shadow: 0 0 12px #452110;
+    
+}
+#fourofour_wrapper a, #fourofour_wrapper a:visited, #fourofour_wrapper a:focus {
+    color: red;
+}
+#fourofour_wrapper a#mainpage {
+	font-weight: bold;
+}
+#fourofour_wrapper h1 {
+    font-size: 46px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+#fourofour_wrapper h1 span {
+    color: red;
+	display: block;
+	font-size: 80px;
+}
+#fourofour_wrapper .customfont {
+    font-family: 'Permanent Marker', Georgia, serif;
+}
+#fourofour_wrapper #dog_wrapper {
+    margin-top: 20px;
+}
+#fourofour_wrapper #dog_wrapper img {
+    float: left;
+}
+#fourofour_wrapper #dog_desc {
+    float: left;
+	padding-left: 20px;
+	width: 325px;
+}

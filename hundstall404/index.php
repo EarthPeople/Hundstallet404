@@ -15,9 +15,9 @@ class Hundstall404{
 	
 	var $base_url = 'http://www.hundstallet.se';
 	var $data_url = '/index.php/varahundar/hundarforomplacering';
-	var $tmp_path = 'tmp';
 	var $dogs = array();
 	var $limit = 1;
+	
 
 	function __construct(){
 		$this->get_dogs();
