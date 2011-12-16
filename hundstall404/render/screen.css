@@ -1,5 +1,5 @@
 body.fourofour {
-    background: url(bg.jpg)repeat #8a4120;
+    background: url("bg.jpg") repeat scroll 0 0 #8A4120;
 }
 #fourofour_wrapper {
     margin: 30px auto;
