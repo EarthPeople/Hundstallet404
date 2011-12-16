@@ -12,6 +12,7 @@ Version: 1.0
 Author URI: http://earthpeople.se/
 */
 class Hundstall404{
+	
 	var $base_url = 'http://www.hundstallet.se';
 	var $data_url = '/index.php/varahundar/hundarforomplacering';
 	var $tmp_path = 'tmp';
@@ -39,33 +40,23 @@ class Hundstall404{
 		$this->dogs = array_slice($this->dogs, 0, $this->limit);
 	}
 	
-	private function _curl($url = null, $ttl = 86400){ # TODO: fix ttl
+	private function _curl($url = null){ # TODO: make it cache!
 		if($url){
-			$tmp_file = $this->tmp_path.DIRECTORY_SEPARATOR.md5($url);
-			if(file_exists($tmp_file)){
-				return file_get_contents($tmp_file);
-			}else{
-				$ch = curl_init();
-				$options = array(
-					CURLOPT_URL => $url,
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_CONNECTTIMEOUT => 10,
-					CURLOPT_TIMEOUT => 10
-				);
-				curl_setopt_array($ch, $options);
-				$data = curl_exec($ch);
-				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-				curl_close($ch);
-				if($http_code === 200){
-					#file_put_contents($tmp_file, $data);
-					return $data;
-				}else{
-					return $result;
-				}
-				return false;
-			}
+			$ch = curl_init();
+			$options = array(
+				CURLOPT_URL => $url,
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_CONNECTTIMEOUT => 10,
+				CURLOPT_TIMEOUT => 10
+			);
+			curl_setopt_array($ch, $options);
+			$data = curl_exec($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+			return $data;
 		}
 	}
+	
 }
 $hundstall404 = new Hundstall404;
 
