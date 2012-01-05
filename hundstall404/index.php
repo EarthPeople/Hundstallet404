@@ -5,9 +5,9 @@
  */
 /*
 Plugin Name: Hundstall404
-Plugin URI: http://earthpeople.se/
+Plugin URI: http://earthpeople.se/labs/2011/12/hundstallet-404-wordpress-plugin/
 Description: We love dogs. This plugin shows a random homeless dog on your 404. Why waste the space?
-Author: Peder Fjällström
+Author: Peder Fjällström, Earth People AB
 Version: 1.0
 Author URI: http://earthpeople.se/
 */
